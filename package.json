@@ -1,0 +1,46 @@
+{
+  "name": "webmview",
+  "version": "0.0.1",
+  "description": "Webm sharing service",
+  "main": "app.js",
+  "scripts": {
+    "test": "test",
+    "start": "pm2 start bin/www -f --watch --ignore-watch=\"[\"node_modules\", \"content\"]\"",
+    "gulp": "cd public&&gulp",
+    "supervisor": "supervisor -n error --debug -- bin/www"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sick-sad-world/nodetestsapp.git"
+  },
+  "keywords": [
+    "webm",
+    "sharing",
+    "hosting"
+  ],
+  "author": "Igor Koptelov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sick-sad-world/nodetestsapp/issues"
+  },
+  "homepage": "https://github.com/sick-sad-world/nodetestsapp#readme",
+  "dependencies": {
+    "bluebird": "^3.4.6",
+    "body-parser": "^1.15.2",
+    "connect-mongo": "^1.3.2",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.5.3",
+    "express": "^4.14.0",
+    "express-session": "^1.14.2",
+    "lodash": "^4.17.2",
+    "mongoose": "^4.7.1",
+    "multer": "^1.2.0",
+    "node-fetch": "^1.6.3",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "serve-favicon": "^2.3.2"
+  },
+  "devDependencies": {
+    "morgan": "^1.7.0"
+  }
+}

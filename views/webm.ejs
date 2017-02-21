@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title><% filename %></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/webm.css">
+</head>
+
+<body>
+    <article>
+      <header>
+        Watching: <%= filename %>
+        <a href="<%= host %>/">Go to WebmView</a>
+      </header>
+      <main>
+        <video controls autoplay preload width="100%" height="100%">
+          <source src="<%= host %>/<%= directory %>/<%= filename %>">
+        </video>
+      </main>
+    </article>
+</body>
+<script type="text/javascript">
+        
+</script>
+
+</html>

@@ -1,0 +1,11 @@
+node_modules
+/production
+.sass-cache
+.vscode
+sprite.symbol.html
+public/img/icons.svg
+/content/**
+public/js/vendor
+public/css
+.zip
+

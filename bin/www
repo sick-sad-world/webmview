@@ -1,0 +1,35 @@
+#!/usr/bin/env node
+
+// Module dependencies.
+// ==================================================================
+const app = require('../app');
+const http = require('http');
+const CONFIG = require('../config');
+
+// Create HTTP server.
+// ==================================================================
+let server = http.createServer(app);
+
+// Listen on provided port, on all network interfaces.
+// ==================================================================
+server.listen(CONFIG.port);
+server.on('error', error => {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+  let port = app.get('port');
+  let bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+});
