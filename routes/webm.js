@@ -1,5 +1,4 @@
 const _ = require('lodash');
-const Promise = require('bluebird');
 const express = require('express');
 const router = express.Router();
 const multer = require('helpers/multer');

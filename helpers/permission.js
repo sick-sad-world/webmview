@@ -1,4 +1,5 @@
 const _ = require('lodash');
+const createError = require('http-errors');
 
 class Permission {
   // Check whatever passport.js loaded an account to REQ and it has validID
@@ -19,19 +20,16 @@ class Permission {
     return this.checkAuth(req) && req.user.role === 'admin';
   }
 
-  static  isAuth (message) {
-    message = message || 'Only authenificated user able to do this.';
-    return (req, res, next) => next(this.checkAuth(req) ? null : {status: 403, message: message});
+  static isAuth (message = 'Only authenificated user able to do this.') {
+    return (req, res, next) => next(this.checkAuth(req) ? null : createError(403, message));
   }
 
-  static isOwner (message) {
-    message = message || 'You can\'t preform this actions for other users.';
-    return (req, res, next) => next(this.checkOwner(req) ? null : {status: 403, message: message});
+  static isOwner (message = 'You can\'t preform this actions for other users.') {
+    return (req, res, next) => next(this.checkOwner(req) ? null : createError(403, message));
   }
 
-  static  isAdmin (message) {
-    message = message || 'Only admin priviledged users able to preform this action';
-    return (req, res, next) => next(this.checkAdmin(req) ? null : {status: 403, message: message});
+  static isAdmin (message = 'Only admin priviledged users able to preform this action') {
+    return (req, res, next) => next(this.checkAdmin(req) ? null : createError(403, message));
   }
 
   static getByOwner(target) {

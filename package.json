@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "test",
-    "start": "pm2 start bin/www -f --watch --ignore-watch=\"[\"node_modules\", \"content\"]\"",
+    "start": "pm2 start bin/www -f --no-daemon --watch --ignore-watch=\"[\"node_modules\", \"content\"]\"",
     "gulp": "cd public&&gulp",
     "supervisor": "supervisor -n error --debug -- bin/www"
   },
@@ -32,6 +32,8 @@
     "ejs": "^2.5.3",
     "express": "^4.14.0",
     "express-session": "^1.14.2",
+    "http-errors": "^1.6.2",
+    "id-shorter": "^0.1.1",
     "lodash": "^4.17.2",
     "mongoose": "^4.7.1",
     "multer": "^1.2.0",

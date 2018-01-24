@@ -16,7 +16,7 @@ const DIR = path.join(__dirname, (IS_DEV) ? CONFIG.paths.frontend[0] : CONFIG.pa
 // ==================================================================
 const morgan = require('morgan');
 const favicon = require('serve-favicon');
-const HttpError = require('helpers/error');
+const createError = require('http-errors');
 
 // Session middlewares connection
 // ==================================================================
@@ -67,18 +67,6 @@ app.use(favicon(path.join(DIR, '/img/favicon.png')));
 
 // Global middlewares wich used on ALL possible routes
 // ==================================================================
-// app.use((req, res, next) => {
-//   if (req.session) {
-//     console.log('session', req.session.id);
-//   }
-//   if (req.user) {
-//     console.log('user', req.user);
-//   }
-//   if (req.params) {
-//     console.log('param', req.params);
-//   }
-//   next();
-// })
 
 // App functionality middlewares implementation
 // ==================================================================
@@ -93,7 +81,7 @@ app.use(express.static(DIR));
 
 // Catch 404 and forward to error handler
 // ==================================================================
-app.use((req, res, next) => next(`Resource "${req.headers.host+req.url}" not found`));
+app.use((req, res, next) => next(createError(404, `Resource "${req.headers.host+req.url}" not found`)));
 
 // Error handling valid options are:
 // string -> 404|message
@@ -101,9 +89,7 @@ app.use((req, res, next) => next(`Resource "${req.headers.host+req.url}" not fou
 // Object -> status,message,type
 // ==================================================================
 app.use((err, req, res, next) => {
-  console.log(err);
-  err = new HttpError(err);
-  res.status(err.status || 500).json(err.toJSON());
+  res.status(err.status).json(err.toJSON());
 });
 
 module.exports = app;
